@@ -1,9 +1,16 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: white;
+  --foreground: black;
+  --nav-color: white;
+  --brand: rgb(183, 255, 111);
+  --brand2: rgb(183, 255, 111);
+  --pg-color:rgb(145, 145, 145);
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -12,15 +19,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.dark {
+  --background: #3a3939;
+  --foreground: white;
+  --nav-color: rgb(46, 45, 45);
+  --brand2: white;
+  --pg-color:rgb(202, 202, 202);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  color: #383737;
 }
