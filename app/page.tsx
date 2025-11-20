@@ -30,17 +30,17 @@ export default function Home() {
     </div>
   </div>
 
-<div className="absolute inset-x-0 bottom-0 flex justify-center">
-  <div className="flex w-full max-w-lg justify-between border-t p-4">
-    <div className="absolute left-1/2 top-0 h-full w-px bg-white"></div>
-    <a href="#" className="text-white hover:text-gray-300 transition duration-300 pr-4"> 
-      DOWNLOAD CV
-    </a>
-    <a href="#" className="text-white hover:text-gray-300 transition duration-300 pl-4">
-      CONTACT ME
-    </a>
-  </div>
-</div>
+<div className="absolute inset-x-0 bottom-0 flex justify-center z-30">
+          <div className="flex w-full max-w-lg text-white font-extrabold justify-between border-t border-white p-4 !cursor-pointer relative">
+            <div className="absolute left-1/2 top-0 h-full w-px bg-white"></div>
+            <a href="#"> 
+              DOWNLOAD CV
+            </a>
+            <a href="#">
+              CONTACT ME
+            </a>
+          </div>
+        </div>
 
       </div>
       <div className="relative lg:right-0 lg:left-36 lg:fixed lg:-skew-x-3 lg:origin-top-left rounded-xl flex-1 lg:ml-[340px] overflow-hidden lg:h-[93vh]">
