@@ -22,10 +22,10 @@ class AnimatedLine {
   constructor(path: Point2D[]) {
     this.path = path;
     this.elapsed = 0;
-    this.drawDuration = 1; // draw 1 second
+    this.drawDuration = 0.20; // draw 1 second
     this.fading = false;
     this.fadeElapsed = 0;
-    this.fadeDuration = 1; // fade 1 second
+    this.fadeDuration = 0.5; // fade 1 second
   }
 
   update(ctx: CanvasRenderingContext2D, deltaTime: number) {
@@ -86,7 +86,7 @@ export default function AnimatedBackground({ className }: Props) {
     canvas.height = height;
 
     const backgroundLinesCount = 500;
-    const maxAnimatedLines = 60;
+    const maxAnimatedLines = 50;
 
     const backgroundPaths: Point2D[][] = [];
     const animatedLines: AnimatedLine[] = [];

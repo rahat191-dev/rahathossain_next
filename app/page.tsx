@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import BubbleCanvas from "./components/features/BubbleCanvas";
+import BubbleCanvas from "@/lib/Animations/BubbleCanvas";
 
 
 export default function Home() {

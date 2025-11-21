@@ -1,6 +1,8 @@
 "use client"
 import Image from "next/image";
-import TypingAnimation from "./features/TypingAnimation";
+import Link from "next/link";
+import TypingAnimation from "@/lib/Animations/TypingAnimation";
+import { contactLinks } from "./data/buttons";
 
 export default function Hero() {
 
@@ -19,22 +21,53 @@ export default function Hero() {
           sizes="(max-width: 1024px) 100vw, 300px "
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-4">
-    <h1 className="text-white text-3xl lg:text-4xl font-extrabold drop-shadow-lg">
-      Rahat Hossain
-    </h1>
-    <div className="text-xl lg:text-xl text-brand2 drop-shadow-md">
-      <TypingAnimation />
-    </div>
+    
+    
   </div>
 
-<div className="absolute inset-x-0 bottom-0 flex justify-center z-30">
-          <div className="flex w-full max-w-lg text-white font-extrabold justify-between border-t border-white p-4 !cursor-pointer relative">
+<div className="absolute inset-x-0 bottom-0 flex flex-col justify-center items-center z-30">
+  <h1 className="text-white text-3xl lg:text-4xl font-extrabold drop-shadow-lg">
+      Rahat Hossain
+    </h1>
+
+    <div className="text-xl lg:text-xl mb-5 text-brand2 drop-shadow-md">
+      <TypingAnimation />
+    </div>
+
+<div className="flex mb-14 gap-4">
+  {contactLinks.map((link, idx) => (
+    <Link key={idx} href={link.href}>
+      <div className="filter invert brightness-0 hover:filter-none transition-all duration-200 cursor-pointer">
+        <Image 
+          src={link.image!} 
+          alt="Contact" 
+          height={20} 
+          width={20} 
+        />
+      </div>
+    </Link>
+  ))}
+</div>
+
+          <div className="flex w-full text-sm max-w-lg text-white font-extrabold justify-between border-t border-white p-4 !cursor-pointer relative">
             <div className="absolute left-1/2 top-0 h-full w-px bg-white"></div>
-            <a href="#"> 
+            <a href="#" className="flex gap-2 "> 
               DOWNLOAD CV
+              <Image 
+              src="/images/contacts/cv-download.svg" 
+              alt="Contact"
+              width={20}
+              height={20}
+              /> 
             </a>
-            <a href="#">
+            <a href="#" className="flex gap-2 "> 
               CONTACT ME
+              <Image 
+              src="/images/contacts/contact-me.svg" 
+              alt="Contact"
+              width={20}
+              height={20}
+              /> 
             </a>
           </div>
         </div>

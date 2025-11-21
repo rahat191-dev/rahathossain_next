@@ -1,5 +1,5 @@
 import "./globals.css";
-import AnimatedBackground from "./components/features/AnimatedBackground";
+import AnimatedBackground from "../lib/Animations/AnimatedBackground";
 import Navbar from "./components/Navbar";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
