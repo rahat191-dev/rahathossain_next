@@ -3,10 +3,11 @@
 import React, { useRef, useEffect } from "react";
 
 type Props = {
-  size?: number;       // original box size
-  duration?: number;   // total cycle in seconds
-  bgColor?: string;    // background color
+  size?: number;
+  duration?: number;
+  bgColor?: string;
 };
+
 
 export default function LoadingAnimation({
   size = 40,                // original size
@@ -67,7 +68,7 @@ export default function LoadingAnimation({
 
       // Inner filling top → bottom
       if (fillProgress > 0) {
-        ctx.fillStyle = fillColor;
+        ctx.fillStyle = "rgba(183,255,111,0.50)";
         ctx.beginPath();
         ctx.rect(-boxSize/2, -boxSize/2, boxSize, boxSize * fillProgress);
         ctx.fill();

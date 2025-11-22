@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Loading or Main Content */}
         {loading ? (
           <div className="flex items-center justify-center h-screen z-50 relative">
-            <LoadingAnimation size={140} color="#60A5FA" duration={2} />
+            <LoadingAnimation size={140} bgColor="rgb(46, 45, 45)" duration={2} />
           </div>
         ) : (
           <div className="flex flex-col sm:flex-row h-full z-10 relative">
