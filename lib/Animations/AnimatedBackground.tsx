@@ -22,13 +22,15 @@ class AnimatedLine {
   constructor(path: Point2D[]) {
     this.path = path;
     this.elapsed = 0;
-    this.drawDuration = 0.2; // draw 0.2s
+    this.drawDuration = 0.2; // 0.2s draw
     this.fading = false;
     this.fadeElapsed = 0;
-    this.fadeDuration = 0.5; // fade 0.5s
+    this.fadeDuration = 0.5; // 0.5s fade
   }
 
   update(ctx: CanvasRenderingContext2D, deltaTime: number) {
+    if (!ctx) return false;
+
     if (!this.fading) {
       this.elapsed += deltaTime;
       const progress = Math.min(this.elapsed / this.drawDuration, 1);
@@ -77,10 +79,9 @@ export default function AnimatedBackground({ className }: Props) {
     canvas.height = height;
 
     const isMobile = width < 640;
-
     const backgroundLinesCount = 500;
     const maxAnimatedLines = 500;
-    const spawnProb = isMobile ? 0.2 : 1.0; // mobile spawn slower
+    const spawnProb = isMobile ? 0.2 : 1.0;
 
     const backgroundPaths: Point2D[][] = [];
     const animatedLines: AnimatedLine[] = [];
@@ -108,7 +109,6 @@ export default function AnimatedBackground({ className }: Props) {
       return path;
     }
 
-    // Create 500 background paths
     for (let i = 0; i < backgroundLinesCount; i++) {
       backgroundPaths.push(createRandomPath());
     }
@@ -119,7 +119,10 @@ export default function AnimatedBackground({ className }: Props) {
       const deltaTime = (time - lastTime) / 1000;
       lastTime = time;
 
-      // Semi-transparent overlay for fading
+      // Safety check
+      if (!ctx) return;
+
+      // Semi-transparent overlay
       ctx.fillStyle = "rgba(30,30,30,0.1)";
       ctx.fillRect(0, 0, width, height);
 

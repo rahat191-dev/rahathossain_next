@@ -28,7 +28,7 @@ export default function Services() {
   ];
 
   return (
-    <main className="text-pg py-8 px-4">
+    <main className="text-pg py-8">
       {/* Section Title */}
       <div
         className="flex justify-between items-center mb-6"
@@ -37,7 +37,7 @@ export default function Services() {
           borderImage: "linear-gradient(to right, white, transparent) 1",
         }}
       >
-        <h2>
+        <h2  className="text-xl font-extrabold">
           <span className="text-brand font-extrabold">M</span>y Services
         </h2>
       </div>

@@ -65,4 +65,19 @@ body {
   border-radius: 6px;
 }
 
+.scrollbar-sec {
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar-sec::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-sec::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 6px;
+}
+
 

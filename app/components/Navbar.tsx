@@ -21,7 +21,7 @@ export default function Navbar({ className }: NavbarProps) {
     }
 
     return (
-    <nav className="bg-nav lg:-skew-x-3 lg:origin-top-left lg:ml-6">
+    <nav className="bg-nav lg:-skew-x-3 sm:px-3 lg:origin-top-left lg:ml-6">
         <div className="flex justify-between items-center px-4 py-4 border-b border-neutral-200 dark:border-neutral-700">
             <div className="flex flex-col items-start sm:hidden text-foreground">
                 {mainLinks.map((link, idx) => (

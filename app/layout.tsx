@@ -27,12 +27,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <LoadingAnimation size={140} bgColor="rgb(46, 45, 45)" duration={2} />
           </div>
         ) : (
-          <div className="flex flex-col sm:flex-row h-full z-10 relative">
-            {/* Navbar */}
+          <div className="flex flex-col sm:flex-row h-full min-h-screen z-10 relative overflow-hidden">
+
             <Navbar className="w-full sm:w-[220px] shrink-0" />
 
-            {/* Main Content */}
-            <main className="flex-1 w-full overflow-auto p-4 text-white text-xl">
+            <main className="flex-1 w-full p-4 text-white text-xl 
+            overflow-y-auto scroll-smooth scrollbar-sec">
               {children}
             </main>
           </div>

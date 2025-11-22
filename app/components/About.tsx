@@ -3,7 +3,7 @@
 export default function About () {
 
     return (
-        <main className="text-pg">
+        <main className="text-pg text-base">
             <div className="lg:flex gap-10 justify-between">
             <div className="lg:w-1/2">
 <div
@@ -13,7 +13,7 @@ export default function About () {
     borderImage: "linear-gradient(to right, white, transparent) 1"
   }}
 >
-  <h2><span className="text-brand font-extrabold">A</span>bout</h2>
+  <h2 className="text-xl font-extrabold"><span className="text-brand font-extrabold">A</span>bout</h2>
 </div>
 
                 <p>I’m Rahat Hossain, a fron-end NEXT.JS Web Designer & Developer from Dhaka, Bangladesh. I specialize in responsive website design, Next.js, Typescript, Tailwind development, and SEO-friendly digital solutions.</p>
