@@ -10,7 +10,6 @@ import Services from "./components/Services";
 export default function Home() {
   return (
     <main className="relative w-full flex flex-col lg:flex-row gap-6">
-
      <Hero />
       <div className="relative lg:right-0 lg:-skew-x-3 lg:origin-top-left rounded-xl flex-1 lg:ml-[340px] overflow-hidden lg:h-[93vh]">
         
@@ -26,7 +25,7 @@ export default function Home() {
         </div>
 
 <div className="relative flex flex-col overflow-y-auto scroll-smooth scrollbar-sec lg:h-[93%] lg:top-5 z-10">
-  <div className="flex flex-col gap-10 sm:m-5 lg:pr-5 pb-4">
+  <div className="flex flex-col gap-10 sm:m-5 pb-4">
     <div id="about"><About /></div>
     <div><Services /></div>
   </div>

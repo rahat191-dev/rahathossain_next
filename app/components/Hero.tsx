@@ -8,7 +8,7 @@ export default function Hero() {
 
     return (
     <div 
-        className="relative lg:ml-6 flex-shrink-0 w-full h-[500px] 
+        className="relative flex-shrink-0 w-full h-[500px] 
                    lg:fixed z-20 lg:w-[300px] lg:h-[95%] 
                    rounded-xl overflow-hidden 
                    lg:-skew-x-3 lg:origin-top-left" 

@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <LoadingAnimation size={140} bgColor="rgb(46, 45, 45)" duration={2} />
           </div>
         ) : (
-          <div className="flex flex-col sm:flex-row h-full min-h-screen z-10 relative overflow-hidden">
+          <div className="flex flex-col lg:pl-2 sm:flex-row h-full min-h-screen z-10 relative overflow-hidden">
 
             <Navbar className="w-full sm:w-[220px] shrink-0" />
 
