@@ -8,9 +8,10 @@ import {userLinks, secLinks } from "./data/buttons";
 
 interface NavbarProps {
   className?: string; 
+  setActiveSection?: (section: string) => void;
 }
 
-export default function Navbar({ className }: NavbarProps) {
+export default function Navbar({ className, setActiveSection }: NavbarProps) {
     const { isDark, toggleDarkMode } = useDarkMode()
 
     const scrollToSection = (id:string) => {
@@ -60,19 +61,29 @@ export default function Navbar({ className }: NavbarProps) {
 
         <div className="flex sm:flex-col sm:gap-4 justify-between py-4 overflow-x-auto scroll-smooth scrollbar-custom">
             {secLinks.map((link, idx) => (
-    <button 
-    key={idx} 
-    onClick={() => link.sec && scrollToSection(link.sec)}  
-    className="flex-shrink-0 w-[20%] sm:w-[100%] flex items-center justify-center"
-    >
-                    {link.image && <Image 
-                    src={link.image}
-                    alt="Button"
-                    height={25}
-                    width={25}
-                    className="icon-filter"
-                    />}
-                </button>
+<button 
+            key={idx} 
+            onClick={() => {
+              if (link.sec) {
+                if (setActiveSection) {
+                  // Desktop: toggle section
+                  setActiveSection(link.sec);
+                } else {
+                  // Mobile: scroll
+                  scrollToSection(link.sec);
+                }
+              }
+            }}  
+            className="flex-shrink-0 w-[20%] sm:w-[100%] flex items-center justify-center"
+          >
+            {link.image && <Image 
+              src={link.image}
+              alt="Button"
+              height={25}
+              width={25}
+              className="icon-filter"
+            />}
+          </button>
             ))}
         </div>
     </nav>
