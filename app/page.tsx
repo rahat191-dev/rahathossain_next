@@ -47,7 +47,7 @@ export default function Home({ activeSection, setActiveSection }: HomeProps) {
             <div
               className={`absolute inset-0 transition-opacity duration-700 ${
                 activeSection === "resume" ? "opacity-100 z-20" : "opacity-0 z-10"
-              } overflow-auto scrollbar-sec`}
+              } overflow-auto scrollbar-sec px-5 top-5 h-[94%]`}
             >
               <Resume />
             </div>
