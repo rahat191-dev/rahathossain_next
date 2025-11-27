@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BubbleCanvas from "@/lib/Animations/BubbleCanvas"; 
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Services from "./components/Services";
@@ -12,10 +11,14 @@ interface HomeProps {
   setActiveSection: (section: string) => void;
 }
 
+const sections = [
+  { id: "about", component: <> <About /> <Services /> </> },
+  { id: "resume", component: <Resume /> },
+];
+
 export default function Home({ activeSection, setActiveSection }: HomeProps) {
   const [isDesktop, setIsDesktop] = useState(true);
 
-  // Detect desktop vs mobile
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
     handleResize();
@@ -25,51 +28,43 @@ export default function Home({ activeSection, setActiveSection }: HomeProps) {
 
   return (
     <main className="relative w-full flex flex-col lg:flex-row gap-6">
+
       {/* Hero Section */}
       <Hero />
 
       {/* Desktop Layout */}
       {isDesktop && (
-        <div className="relative lg:right-0 lg:-skew-x-3 lg:origin-top-left rounded-xl flex-1 lg:ml-[320px] overflow-hidden lg:h-[93vh]">
-          <BubbleCanvas key={activeSection} />
-          <div className="relative lg:h-full z-10 overflow-hidden p-5">
-            {/* About Section */}
+        <div className="relative bg-nav lg:right-0 lg:-skew-x-3 rounded-e-xl flex-1 lg:ml-[270px] lg:h-[95vh]">
+          {sections.map(({ id, component }) => (
             <div
-              className={`absolute inset-0 transition-opacity duration-700 ${
-                activeSection === "about" ? "opacity-100 z-20" : "opacity-0 z-10"
-              } overflow-auto scrollbar-sec px-5 top-5 h-[94%]`}
+              key={id}
+              className={`
+                absolute inset-0 transition-all duration-1000 ease-out
+                ${activeSection === id
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 pointer-events-none -translate-x-60"
+                }
+                overflow-auto scrollbar-sec pl-8 pr-5 top-5 h-[94%]
+              `}
             >
-              <About />
-              <Services />
+              {component}
             </div>
-
-            {/* Resume Section */}
-            <div
-              className={`absolute inset-0 transition-opacity duration-700 ${
-                activeSection === "resume" ? "opacity-100 z-20" : "opacity-0 z-10"
-              } overflow-auto scrollbar-sec px-5 top-5 h-[94%]`}
-            >
-              <Resume />
-            </div>
-          </div>
+          ))}
         </div>
       )}
 
-      {/* Mobile Layout */}
-      <div className="relative lg:hidden rounded-xl flex-1 overflow-hidden">
-        <BubbleCanvas />
-        <div className="relative flex flex-col gap-5 p-5 overflow-y-auto scroll-smooth scrollbar-sec lg:h-[93%] lg:top-5 z-10">
-          <About />
-          <Services />
-        </div>
-      </div>
-
-      <div id="resume" className="relative lg:hidden rounded-xl flex-1 overflow-hidden">
-        <BubbleCanvas />
-        <div className="relative flex flex-col gap-5 p-5 overflow-y-auto scroll-smooth scrollbar-sec lg:h-[93%] lg:top-5 z-10">
-          <Resume />
+      {/* Mobile Layout: separate scrollable sections */}
+      {!isDesktop && (
+        <>
+          <div className="bg-nav flex flex-col gap-5 p-5 overflow-y-auto scroll-smooth scrollbar-sec z-10">
+            {sections[0].component}
           </div>
-        </div>
+
+          <div className="bg-nav flex flex-col gap-5 p-5 overflow-y-auto scroll-smooth scrollbar-sec z-10">
+            {sections[1].component}
+          </div>
+        </>
+      )}
 
     </main>
   );

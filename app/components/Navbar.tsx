@@ -23,7 +23,7 @@ export default function Navbar({ className, setActiveSection }: NavbarProps) {
     }
 
     return (
-      <nav className="">
+      <nav className="lg:h-full">
     <div className="bg-nav lg:h-full lg:-skew-x-3 sm:px-3 lg:origin-top-left lg:ml-6">
         <div className="flex justify-between items-center px-4 py-4 border-b border-neutral-200 dark:border-neutral-700">
             <div className="flex flex-col items-start sm:hidden text-foreground">
@@ -94,14 +94,14 @@ export default function Navbar({ className, setActiveSection }: NavbarProps) {
     </div>
      <div 
 className={`
-    fixed top-0 left-0 bg-nav sm:-left-20 text-pg w-full sm:w-[400px] h-full z-50
-    transition-transform duration-300 ease-in-out
-    ${isOpen ? "translate-x-0" : "-translate-x-full"}
-  `}
+  fixed top-0 left-0 bg-nav sm:-left-20 text-pg w-full sm:w-[400px] h-full z-50
+  transform transition-transform duration-700 ease-in-out
+  ${isOpen ? "translate-x-0" : "-translate-x-full"}
+`}
 >
             <button
             onClick={() => setIsOpen(false)}
-            className="w-full sm:absolute bg-nav sm:w-auto sm:ml-[400px] px-6 p-4 left-0 items-center hover:text-brand"
+            className="w-full sm:absolute bg-nav  sm:w-auto sm:ml-[400px] px-6 p-4 left-0 items-center hover:text-brand"
             >✖</button>
                 <ul className="p-4 sm:ml-20">
                   <li>Hello..</li>

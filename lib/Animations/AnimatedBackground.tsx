@@ -78,10 +78,9 @@ export default function AnimatedBackground({ className }: Props) {
     canvas.width = width;
     canvas.height = height;
 
-    const isMobile = width < 640;
-    const backgroundLinesCount = isMobile ? 200 : 500;
-    const maxAnimatedLines = 500;
-    const spawnProb = isMobile ? 0.2 : 1.0;
+    const backgroundLinesCount = 200;
+    const maxAnimatedLines = 300;
+    const spawnProb = 1.0;
 
     const backgroundPaths: Point2D[][] = [];
     const animatedLines: AnimatedLine[] = [];
