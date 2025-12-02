@@ -34,18 +34,30 @@ export default function YouTube() {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="flex flex-col p-4 gap-4">
       {/* Channel Logo */}
-      {logo && (
-        <img
-          src={logo}
-          alt="Channel Logo"
-          className="w-20 h-20 rounded-full mb-4"
-        />
-      )}
+      <div className="flex items-center gap-3">
+  {logo && (
+    <img
+      src={logo}
+      alt="Channel Logo"
+      className="w-20 h-20 rounded-full"
+    />
+  )}
+
+  {/* Subscribe Button */}
+  <a
+    href={`https://www.youtube.com/channel/UCk_pBB6TriKLB_biEnMo4kg?sub_confirmation=1`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-red-600 text-white text-sm px-2 py-1 rounded font-semibold hover:text-brand transition-all duration-500"
+  >
+    Subscribe
+  </a>
+  </div>
 
       {/* Video Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {videos.map((video) => (
           <div
             key={video.videoId} // 🔥 FIXED — unique key
