@@ -1,65 +1,66 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  const API_KEY = process.env.YOUTUBE_API_KEY;
-  const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
+const CHANNEL_ID = "UCk_pBB6TriKLB_biEnMo4kg"; // BDC PRESS
+const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 
-  if (!API_KEY || !CHANNEL_ID) {
+export async function GET() {
+  if (!API_KEY) {
     return NextResponse.json(
-      { success: false, error: "API keys missing" },
+      { error: "Missing API KEY" },
       { status: 500 }
     );
   }
 
   try {
-    // -----------------------------
-    // 1) Fetch Channel Details
-    // -----------------------------
-    const channelRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${CHANNEL_ID}&key=${API_KEY}`
-    );
-    const channelData = await channelRes.json();
+    // ----------------------------------------------------
+    // 1️⃣ Get Latest Videos (Uploads + Live)
+    // ----------------------------------------------------
+    const searchURL =
+      `https://www.googleapis.com/youtube/v3/search?` +
+      `key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&order=date&maxResults=20`;
 
-    if (!channelData.items?.length) {
+    const searchRes = await fetch(searchURL);
+    const searchData = await searchRes.json();
+
+    if (!searchData.items) {
       return NextResponse.json(
-        { success: false, error: "Channel not found" },
-        { status: 404 }
+        { error: "Invalid YouTube search response" },
+        { status: 500 }
       );
     }
 
+    const videos = searchData.items.map((item: any) => ({
+      videoId: item.id.videoId,
+      title: item.snippet.title,
+      thumbnail: item.snippet.thumbnails?.high?.url,
+      publishedAt: item.snippet.publishedAt,
+      liveStatus:
+        item.snippet.liveBroadcastContent === "live"
+          ? "live"
+          : item.snippet.liveBroadcastContent === "upcoming"
+          ? "upcoming"
+          : "none",
+    }));
+
+    // ----------------------------------------------------
+    // 2️⃣ Get Channel Logo
+    // ----------------------------------------------------
+    const channelURL =
+      `https://www.googleapis.com/youtube/v3/channels?` +
+      `part=snippet&id=${CHANNEL_ID}&key=${API_KEY}`;
+
+    const channelRes = await fetch(channelURL);
+    const channelData = await channelRes.json();
+
     const channelLogo =
-      channelData.items[0].snippet.thumbnails.medium.url || "";
-
-    // -----------------------------
-    // 2) Fetch Videos (latest 10)
-    // -----------------------------
-    const videoRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10`
-    );
-    const videoData = await videoRes.json();
-
-    const videos = videoData.items
-      .filter((item: any) => item.id.kind === "youtube#video")
-      .map((item: any) => ({
-        videoId: item.id.videoId,
-        title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.medium.url,
-        publishedAt: item.snippet.publishedAt,
-
-        // ⭐ ADD LIVE STATUS
-        liveStatus: item.snippet.liveBroadcastContent, // "live" | "upcoming" | "none"
-      }));
+      channelData?.items?.[0]?.snippet?.thumbnails?.default?.url || "";
 
     return NextResponse.json({
-      success: true,
-      channelLogo,
       videos,
+      channelLogo,
     });
-  } catch (err) {
-    console.error("YouTube API ERROR:", err);
-    return NextResponse.json(
-      { success: false, error: "YouTube fetch failed" },
-      { status: 500 }
-    );
+  } catch (error) {
+    console.error("YouTube API failed:", error);
+    return NextResponse.json({ error: "YouTube API failed" }, { status: 500 });
   }
 }

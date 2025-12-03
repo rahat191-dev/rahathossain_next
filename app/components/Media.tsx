@@ -19,6 +19,23 @@ export default function Media() {
     "/images/images/3.jpg",
     "/images/images/4.jpg",
     "/images/images/5.jpg",
+       "/images/images/2.jpeg",
+    "/images/images/3.jpg",
+    "/images/images/4.jpg",
+    "/images/images/5.jpg",
+    "/images/images/2.jpeg",
+    "/images/images/3.jpg",
+    "/images/images/4.jpg",
+    "/images/images/5.jpg",
+       "/images/images/2.jpeg",
+    "/images/images/3.jpg",
+    "/images/images/4.jpg",
+    "/images/images/5.jpg",
+    "/images/images/2.jpeg",
+    "/images/images/3.jpg",
+    "/images/images/4.jpg",
+    "/images/images/5.jpg",
+    
   ];
 
   const total = images.length;
