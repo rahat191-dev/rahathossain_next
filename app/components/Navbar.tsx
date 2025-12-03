@@ -69,35 +69,49 @@ export default function Navbar({ className, setActiveSection }: NavbarProps) {
             </div>
         </div>
 
-        <div className="flex sm:flex-col sm:gap-4 justify-between py-4 overflow-x-auto scroll-smooth scrollbar-custom">
-            {secLinks.map((link, idx) => (
-<button 
-            key={idx} 
-            onClick={() => {
-              if (link.sec) {
-                if (window.innerWidth >= 1024) { // Explicitly check for desktop
-                  if (setActiveSection) {
-                    // Desktop: toggle section (via state)
-                    setActiveSection(link.sec);
-                  }
-                } else {
-                  // Mobile: scroll (via DOM ID)
-                  scrollToSection(link.sec);
-                }
-              }
-            }}  
-            className="flex-shrink-0 w-[20%] sm:w-[100%] flex items-center justify-center"
-          >
-            {link.image && <Image 
-              src={link.image}
-              alt="Button"
-              height={25}
-              width={25}
-              className="icon-filter"
-            />}
-          </button>
-            ))}
-        </div>
+<div className="
+  flex sm:flex-col sm:gap-4 justify-between py-4
+  overflow-x-auto lg:overflow-visible
+  scroll-smooth scrollbar-custom relative
+">
+  {secLinks.map((link, idx) => (
+<div key={idx} className="relative flex-shrink-0 w-[20%] sm:w-[100%] flex items-center justify-center group">
+  
+  <button
+    onClick={() => {
+      if (link.sec) {
+        if (window.innerWidth >= 1024) {
+          setActiveSection?.(link.sec);
+        } else {
+          scrollToSection(link.sec);
+        }
+      }
+    }}
+    className="flex items-center justify-center p-2"
+  >
+    {link.image && (
+      <Image
+        src={link.image}
+        alt={link.sec || "Button"}
+        height={25}
+        width={25}
+        className="icon-filter"
+      />
+    )}
+  </button>
+
+  {/* Tooltip */}
+  {link.hover && (
+    <span className="absolute py-1 px-2 rounded transition duration-300 left-12 opacity-0 group-hover:opacity-100 bg-brand hidden lg:flex">      
+    {link.hover}
+    </span>
+  )}
+
+</div>
+
+  ))}
+</div>
+
     </div>
      <div 
 className={`

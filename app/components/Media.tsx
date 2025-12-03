@@ -1,7 +1,7 @@
 "use client"
 import YouTube from "./data/YouTube"
 
-export default function Blog () {
+export default function Media () {
 
     return (
         <main className="text-pg text-base">
@@ -12,7 +12,7 @@ export default function Blog () {
     borderImage: "linear-gradient(to right, var(--pg-color), transparent) 1"
   }}
 >
-  <h2 className="text-xl font-extrabold"><span className="text-brand font-extrabold">B</span>log</h2>
+  <h2 className="text-xl font-extrabold"><span className="text-brand font-extrabold">M</span>edia</h2>
 </div>
 
  <section>

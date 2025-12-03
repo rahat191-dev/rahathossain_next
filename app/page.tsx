@@ -9,7 +9,8 @@ import Resume from "./components/Resume";
 import Skills from "./components/Skills";
 import GetInTouch from "./components/GetInTouch";
 import ContactForm from "./components/ContactForm";
-import Blog from "./components/Blog";
+import Media from "./components/Media";
+import Slider from "./components/Slider";
 
 interface HomeProps {
   activeSection: string;
@@ -21,8 +22,9 @@ const sections = [
   { id: "about", component: <> <About /> <Services /> </> },
   { id: "resume", component: <Resume /> },
   { id: "skills", component: <Skills />},
+  { id: "media", component: <> <Slider /> <Media /> </>},
   { id: "contact", component: <> <GetInTouch /> <ContactForm /> </> },
-  { id: "blog", component: <Blog />},
+
 ];
 
 export default function Home({ activeSection, setActiveSection }: HomeProps) {

@@ -31,7 +31,7 @@ export default function RootLayout() {
         ) : (
           <div className="flex flex-col lg:pl-2 sm:flex-row h-full min-h-screen z-10 relative overflow-hidden">
             
-<nav className="mousepointer shrink-0">
+<nav className="mousepointer z-50 shrink-0">
   <Navbar setActiveSection={setActiveSection} />
 </nav>
    <MousePointer />
