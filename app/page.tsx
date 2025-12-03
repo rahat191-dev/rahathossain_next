@@ -10,19 +10,20 @@ import Skills from "./components/Skills";
 import GetInTouch from "./components/GetInTouch";
 import ContactForm from "./components/ContactForm";
 import Media from "./components/Media";
-import Slider from "./components/Slider";
+import BdcPress from "./components/BdcPress";
 
 interface HomeProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
 }
 
+
 // Data defining your sections
 const sections = [
   { id: "about", component: <> <About /> <Services /> </> },
   { id: "resume", component: <Resume /> },
   { id: "skills", component: <Skills />},
-  { id: "media", component: <> <Slider /> <Media /> </>},
+  { id: "media", component: <><Media /><BdcPress /></> },
   { id: "contact", component: <> <GetInTouch /> <ContactForm /> </> },
 
 ];
