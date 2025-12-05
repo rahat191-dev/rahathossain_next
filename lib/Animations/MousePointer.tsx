@@ -2,7 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-export default function MousePointer() {
+interface MousePointerProps {
+  className?: string;
+}
+
+export default function MousePointer({ className }: MousePointerProps) {
   const pointerRef = useRef<HTMLDivElement>(null);
 
   const pos = useRef({ x: 0, y: 0 });       // current pointer position

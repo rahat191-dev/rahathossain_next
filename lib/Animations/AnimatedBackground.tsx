@@ -19,8 +19,6 @@ interface AnimatedBackgroundProps {
 export default function AnimatedBackground({ className }: AnimatedBackgroundProps) {
   const bgRef = useRef<HTMLDivElement | null>(null);
   const numberOfColorBoxes = 400;
-  const ACCENT_COLOR = "rgb(183, 255, 111)";
-  const BG_COLOR_DARK = "#111";
 
   useEffect(() => {
     const bgAnimation = bgRef.current;
@@ -36,34 +34,30 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
     }
   }, []);
 
-// lib/Animations/AnimatedBackground.js
-
-// ... (অন্যান্য কোড)
-
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: ANIMATION_STYLES }} />
 
+      {/* Background Grid */}
       <div
         ref={bgRef}
         className={`
-          fixed inset-0 w-full h-screen  /* পুরো স্ক্রিন কভার করার জন্য */
+          fixed inset-0 w-full h-screen
           grid grid-cols-20 grid-rows-20
-          bg-[#0f0f0f] filter saturate-[2] 
+          bg-[#0f0f0f] filter saturate-[2]
           ${className || ""}
+          z-0
         `}
       ></div>
 
-      {/* Moving blurred bar */}
-{/* Moving blurred green bar */}
-<div
-  className="fixed top-0  left-0 w-full h-10 pointer-events-none animate-slide-down"
-  style={{
-    backgroundColor: "rgba(183, 255, 111, 1)", // stronger opacity
-    filter: "blur(80px) drop-shadow(0 0 20px rgb(183, 255, 111))", // vivid glow
-  }}
-></div>
-
+      {/* Moving Blurred Bar */}
+      <div
+        className="fixed top-0 left-0 w-full h-10 pointer-events-none animate-slide-down z-0"
+        style={{
+          backgroundColor: "rgba(183, 255, 111, 1)",
+          filter: "blur(80px) drop-shadow(0 0 20px rgb(183, 255, 111))",
+        }}
+      ></div>
 
       <style jsx global>{`
         .grid-cols-20 {

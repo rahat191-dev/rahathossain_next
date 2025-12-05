@@ -32,11 +32,27 @@ html.dark {
   --pg-color:rgb(180, 180, 180);
 }
 
+img, svg {
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+/* Smooth Theme Transition */
+* {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    fill 0.35s ease,
+    stroke 0.35s ease;
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   color: #383737;
+   transition: background-color 0.35s ease, color 0.35s ease;
 }
 .icon-filter {
   filter: brightness(0) invert(0);
@@ -80,6 +96,9 @@ body {
   background-color: #757575;
   border-radius: 6px;
 }
+
+
+
 
 
 

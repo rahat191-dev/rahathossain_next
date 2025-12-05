@@ -95,7 +95,7 @@ export default function Media() {
   const finalTransform = `translateX(${-requiredShift + offset}px)`;
 
   return (
-    <main className="flex flex-col text-pg items-center">
+    <main className="flex flex-col w-full text-pg items-center">
       <div className="text-foreground border-b border-pg pb-2 w-full mb-6">
         <h2 className="text-xl font-extrabold">
           <span className="text-brand font-extrabold">M</span>edia
