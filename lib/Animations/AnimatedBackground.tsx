@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
+// 👇 এখানে পরিবর্তন করা হয়েছে: -60px এর বদলে -250px দেওয়া হয়েছে যাতে আরও উপর থেকে আসে
 const ANIMATION_STYLES = `
 @keyframes animBack {
-  0% { transform: translateY(-60px); }
+  0% { transform: translateY(-250px); } 
   100% { transform: translateY(120vh); }
 }
 .animate-slide-down {
@@ -28,8 +29,11 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
 
     for (let i = 0; i < numberOfColorBoxes; i++) {
       const colorBox = document.createElement("div");
+
+      // 🔥 Hover remove + pointer remove
       colorBox.className =
-        "m-[2px] bg-[#1d1d1d] transition-all duration-[2000ms] ease-in-out hover:bg-[rgb(183,255,111)] hover:duration-0 filter brightness-[1.1] pointer-events-auto";
+        "m-[2px] bg-[#1d1d1d] transition-all duration-[2000ms] ease-in-out filter brightness-[1.1] pointer-events-none";
+
       bgAnimation.append(colorBox);
     }
   }, []);
@@ -52,14 +56,14 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
 
       {/* Moving Blurred Bar */}
       <div
-        className="fixed top-0 left-0 w-full h-10 pointer-events-none animate-slide-down z-0"
+        className="fixed top-0 left-0 w-full h-10 pointer-events-none animate-slide-down z-10"
         style={{
           backgroundColor: "rgba(183, 255, 111, 1)",
           filter: "blur(80px) drop-shadow(0 0 20px rgb(183, 255, 111))",
         }}
       ></div>
 
-      <style jsx global>{`
+      <style className="z-20" jsx global>{`
         .grid-cols-20 {
           grid-template-columns: repeat(20, 1fr);
         }
