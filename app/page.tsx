@@ -10,7 +10,7 @@ import Skills from "./components/Skills";
 import GetInTouch from "./components/GetInTouch";
 import ContactForm from "./components/ContactForm";
 import Media from "./components/Media";
-import BdcPress from "./components/BdcPress";
+import Youtube from "./components/Youtube";
 
 interface HomeProps {
   activeSection: string;
@@ -23,7 +23,7 @@ const sections = [
   { id: "about", component: <> <About /> <Services /> </> },
   { id: "resume", component: <Resume /> },
   { id: "skills", component: <Skills />},
-  { id: "media", component: <><Media /><BdcPress /></> },
+  { id: "media", component: <><Media /><Youtube /></> },
   { id: "contact", component: <> <GetInTouch /> <ContactForm /> </> },
 
 ];

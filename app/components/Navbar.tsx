@@ -32,8 +32,13 @@ export default function Navbar({ className, setActiveSection }: NavbarProps) {
     <div className="bg-nav lg:h-full lg:-skew-x-3 sm:px-3 lg:origin-top-left lg:ml-6">
         <div className="flex justify-between items-center px-4 py-4 border-b border-neutral-200 dark:border-neutral-700">
             <div className="flex flex-col items-start sm:hidden text-foreground">
-                <a href="/" className="font-extrabold text-sm">Rahat Hossain</a>
-                <div className="mt-[-5px] text-brand text-sm"><TypingAnimation /></div>
+              <div className="flex items-center gap-1">
+                <a href="/" className="font-extrabold text-sm">VS Coder BD</a>
+                <a href={`https://www.youtube.com/@vscoderbd`}
+                className="text-xs bg-red-500 hover:bg-red-600 px-1 py-0.5 rounded">Youtube</a>
+                <p></p>
+              </div>
+                <div className="mt-[-3px] text-brand text-sm"><TypingAnimation /></div>
                 
             </div>
             <div className="flex sm:flex-col-reverse sm:justify-center gap-4 items-center sm:w-full">

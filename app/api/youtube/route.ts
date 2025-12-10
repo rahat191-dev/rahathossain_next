@@ -1,23 +1,36 @@
 import { NextResponse } from "next/server";
-import { XMLParser } from "fast-xml-parser";
 
 export async function GET() {
   try {
-    const CHANNEL_ID = "UCk_pBB6TriKLB_biEnMo4kg"; // চাইলে env এ রাখতে পারো
-    const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+    const CHANNEL_ID = "UCPmAACUzyE1HyOlEvOrWWRw";
 
-    const res = await fetch(RSS_URL, { cache: "no-store" });
-    const xml = await res.text();
+    const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: "",
-    });
+    const rss = await fetch(feedUrl);
+    const xmlText = await rss.text();
 
-    const json = parser.parse(xml);
+    // XML → JSON Convert
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlText, "text/xml");
 
-    return NextResponse.json(json);
+    const entries = xml.getElementsByTagName("entry");
+    const videos: any[] = [];
+
+    for (let i = 0; i < entries.length; i++) {
+      const e = entries[i];
+
+      const title = e.getElementsByTagName("title")[0]?.textContent || "";
+      const videoId =
+        e.getElementsByTagName("yt:videoId")[0]?.textContent || "";
+
+      videos.push({ title, "yt:videoId": videoId });
+    }
+
+    return NextResponse.json({ feed: { entry: videos } });
   } catch (error) {
-    return NextResponse.json({ error: "RSS parse error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch YouTube feed", details: String(error) },
+      { status: 500 }
+    );
   }
 }
